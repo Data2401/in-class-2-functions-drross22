@@ -1,0 +1,53 @@
+---
+title: "In Class Lab"
+author: "Damon Ross"
+date: "DATA 2401"
+output: html_document
+---
+**Note: Your exam will be in a similar format to this (RMarkdown File with Questions and Code chunks for your answers), so make sure you have the process for knitting to html working.** 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## In Class Activity: 
+
+1. Write a function to simulate rolling a 6-sided die and returns the result.
+
+```{r}
+
+```
+
+
+
+1. Write a function to simulate rolling 2 6-sided dice that returns the sum of the rolls. 
+
+```{r}
+
+
+```
+
+
+1. Write a function that takes two people name's as strings, simulates rolling a 6-sided die for each of the names, then returns the name of the person with the higher roll. The function should reroll once on a tie, but if there is a second tie, it should return "draw". 
+
+```{r}
+# Your one-roll function goes here
+
+```
+
+
+2. Write a second function (you may start by modifying the first one) that takes two names as strings, simulates both of them rolling die 15 times, and returns the name of the person who "won" more rolls. Don't reroll ties this time, but don't count them as "wins". 
+
+```{r}
+# Your 15-roll function goes here
+
+
+```
+
+
+3. Modify your function from (2) so that the person in the first argument has a die that is weighted to get higher numbers more often (you may decide the actual percentage change). Run the function ten or so times. Does the second person ever win?
+
+```{r}
+# Your "cheating" function goes here
+```
+
