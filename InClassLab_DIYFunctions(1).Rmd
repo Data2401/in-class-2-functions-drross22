@@ -15,7 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Write a function to simulate rolling a 6-sided die and returns the result.
 
 ```{r}
+die_roll1 <- function(){
+  roll_1 <- sample(1:6, 1, replace = TRUE)
+  
+  return(roll_1)
+}
 
+die_roll1()
 ```
 
 
@@ -23,7 +29,17 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Write a function to simulate rolling 2 6-sided dice that returns the sum of the rolls. 
 
 ```{r}
+die_roll2 <- function(){
+  roll_1 <- sample(1:6, 1, replace = TRUE) #die 1 roll
+ 
+  roll_2 <- sample(1:6, 1, replace = TRUE) #die 2 roll
+  
+  sum_roll <- paste("Die #1 shows:",roll_1, "and Die #2 shows:", roll_2, "and the sum is:", roll_1 + roll_2)
+  
+  return(sum_roll)
+}
 
+die_roll2()
 
 ```
 
@@ -31,7 +47,33 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Write a function that takes two people name's as strings, simulates rolling a 6-sided die for each of the names, then returns the name of the person with the higher roll. The function should reroll once on a tie, but if there is a second tie, it should return "draw". 
 
 ```{r}
-# Your one-roll function goes here
+highest_roll <- function(name1, name2) {
+  
+  name1_roll <- sample(1:6, 1, replace = TRUE) #die 1 roll
+ 
+  name2_roll <- sample(1:6, 1, replace = TRUE) #die 2 roll
+  
+  if(name1_roll == name2_roll) {
+      name1_roll <- sample(1:6, 1, replace = TRUE) #die 1 re-roll
+      name2_roll <- sample(1:6, 1, replace = TRUE) #die 2 re-roll
+      
+  }
+  
+  if(name1_roll == name2_roll) {
+      paste(name1_roll, name2_roll)
+      return(print("No winner, it's a draw"))
+      
+  } else if(name1_roll > name2_roll) {
+    return(paste(name1, "is the winner"))
+    
+  } else if(name1_roll < name2_roll) {
+    return(paste(name2, "is the winner"))
+    
+  }  
+  
+} 
+
+highest_roll("Jack", "Jill")
 
 ```
 
@@ -39,8 +81,34 @@ knitr::opts_chunk$set(echo = TRUE)
 2. Write a second function (you may start by modifying the first one) that takes two names as strings, simulates both of them rolling die 15 times, and returns the name of the person who "won" more rolls. Don't reroll ties this time, but don't count them as "wins". 
 
 ```{r}
-# Your 15-roll function goes here
+roll_15 <- function(name1, name2) {
+  
+  name1_roll <- sample(1:6, 15, replace = TRUE) #die 1 roll 15 times
+ 
+  name2_roll <- sample(1:6, 15, replace = TRUE) #die 2 roll 15 times
 
+  print(name1)
+  print(name1_roll)
+  
+  print(name2)
+  print(name2_roll)
+  
+  name1_win_total <- (sum(name1_roll > name2_roll))
+  name2_win_total <- (sum(name2_roll > name1_roll))
+  
+  if(name1_win_total == name2_win_total) {
+    return("Result is a draw")
+    
+  } else if(name1_win_total > name2_win_total) {
+    return(paste(name1, "wins"))
+    
+  } else if(name2_win_total > name1_win_total) {
+    return(paste(name2, "wins"))
+  }
+  
+}
+
+roll_15("Bob", "Sue")
 
 ```
 
@@ -48,6 +116,35 @@ knitr::opts_chunk$set(echo = TRUE)
 3. Modify your function from (2) so that the person in the first argument has a die that is weighted to get higher numbers more often (you may decide the actual percentage change). Run the function ten or so times. Does the second person ever win?
 
 ```{r}
-# Your "cheating" function goes here
+# player 1 gets weighted die for higher roll amoumts
+roll_10 <- function(name1, name2) {
+  
+  name1_roll <- sample(1:6, 10, replace = TRUE, prob = c(2/20,2/20,2/20,3/20,5/20,6/20)) #die 1 roll 10 times
+ 
+  name2_roll <- sample(1:6, 10, replace = TRUE) #die 2 roll 10 times
+
+  print(name1)
+  print(name1_roll)
+  
+  print(name2)
+  print(name2_roll)
+  
+  name1_win_total <- (sum(name1_roll > name2_roll))
+  name2_win_total <- (sum(name2_roll > name1_roll))
+  
+  if(name1_win_total == name2_win_total) {
+    return("Result is a draw")
+    
+  } else if(name1_win_total > name2_win_total) {
+    return(paste(name1, "wins"))
+    
+  } else if(name2_win_total > name1_win_total) {
+    return(paste(name2, "wins"))
+  }
+  
+}
+
+roll_10("Bob", "Sue")
 ```
 
+The 2nd person won the game about 20% of the time. 
